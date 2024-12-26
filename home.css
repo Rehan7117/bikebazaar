@@ -51,16 +51,35 @@ body {
 }
 
 /* Individual Bike Item */
-.bike-list div {
+.bike-item {
     width: 250px;
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 5px;
     background-color: #fefefe;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
-.bike-list div:hover {
+.bike-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.bike-item h3 {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.bike-item p {
+    font-size: 1rem;
+    color: #555;
+}
+
+.bike-item:hover {
     transform: scale(1.02);
     transition: all 0.3s ease;
 }

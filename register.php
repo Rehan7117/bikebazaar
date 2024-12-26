@@ -48,6 +48,8 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
+    <link rel="stylesheet" type="text/css" href="register.css"> <!-- Link to your external CSS file -->
+
 </head>
 <body>
     <h2>Register</h2>

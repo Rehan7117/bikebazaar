@@ -3,7 +3,6 @@
 <head>
     <title>Bike Bazaar</title>
     <link rel="stylesheet" type="text/css" href="home.css">
-
 </head>
 
 <body>
@@ -21,7 +20,26 @@
         <p>Reliable bikes at affordable prices</p>
         <div class="bike-list">
             <!-- Featured Bikes List -->
-            <!-- Add your bike items here -->
+            <div class="bike-item">
+                <img src="https://via.placeholder.com/250x150?text=Bike+1" alt="Bike 1">
+                <h3>Mountain Bike</h3>
+                <p>Price: $300</p>
+            </div>
+            <div class="bike-item">
+                <img src="https://via.placeholder.com/250x150?text=Bike+2" alt="Bike 2">
+                <h3>Road Bike</h3>
+                <p>Price: $400</p>
+            </div>
+            <div class="bike-item">
+                <img src="https://via.placeholder.com/250x150?text=Bike+3" alt="Bike 3">
+                <h3>Hybrid Bike</h3>
+                <p>Price: $350</p>
+            </div>
+            <div class="bike-item">
+                <img src="https://via.placeholder.com/250x150?text=Bike+4" alt="Bike 4">
+                <h3>Electric Bike</h3>
+                <p>Price: $700</p>
+            </div>
         </div>
     </div>
 

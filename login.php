@@ -52,6 +52,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="register.css"> <!-- Link to your external CSS file -->
+
 </head>
 <body>
     <h2>Login</h2>
@@ -64,14 +66,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <!-- Login Form -->
     <form method="POST">
         <label for="username">Username or Email:</label>
-        <input type="text" id="username" name="username" required><br>
+        <input type="text" id="username" placeholder="username"  name="username" required><br>
 
         <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required><br>
+        <input type="password" id="password" placeholder="password" name="password" required><br>
 
         <button type="submit">Login</button>
+        <p>Don't have an account? <a href="register.php">Register here</a></p>
+
     </form>
 
-    <p>Don't have an account? <a href="register.php">Register here</a></p>
 </body>
 </html>
