@@ -82,7 +82,7 @@ if (!isset($_SESSION['admin_id'])) {
             <p>You are logged in as an admin.</p>
             <ul>
                 <li><a href="user_details.php">View Users</a></li>
-                <li><a href="bike_upload.php">Upload Bikes</a></li> <!-- Fixed the link extension to .php -->
+                <li><a href="uploadbike.php">Upload Bikes</a></li> <!-- Fixed the link extension to .php -->
             </ul>
         </div>
     </div>

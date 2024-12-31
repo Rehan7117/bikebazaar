@@ -6,12 +6,12 @@ include 'navbar.php'; // Assuming this is a navbar file for your navigation
 // Connect to the database
 $conn = new mysqli('localhost', 'root', '', 'project1');
 
-// Check the connection
+// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Fetch bikes from the database
+// Fetch bikes from the database to display
 $sql = "SELECT * FROM bikes ORDER BY id DESC";
 $result = $conn->query($sql);
 
@@ -45,14 +45,8 @@ $conn->close();
                 <!-- Loop through all the bikes -->
                 <?php while ($bike = $result->fetch_assoc()): ?>
                     <div class="bike-item">
-                        <!-- Display bike image -->
-                        <?php if (!empty($bike['image'])): ?>
-                            <!-- Dynamically generate the path to the uploaded image -->
-                            <img src="uploads/<?php echo $bike['image']; ?>" alt="Bike Image" width="200">
-                        <?php else: ?>
-                            <!-- Fallback image if no image is uploaded -->
-                            <img src="default-image.jpg" alt="No image available" width="200">
-                        <?php endif; ?>
+                        <!-- Dynamically generate the path to the uploaded image -->
+                        <img src="http://localhost/sujal/bikebazaar/<?php echo htmlspecialchars($bike['image']); ?>" alt="Bike Image" width="200">
                         
                         <h3><?php echo htmlspecialchars($bike['bike_name']); ?></h3>
                         <p>Price: $<?php echo number_format($bike['price'], 2); ?></p>
