@@ -59,7 +59,7 @@ input[type="password"]:focus {
 button {
     width: 100%;
     padding: 10px;
-    background-color: #4CAF50;
+    background-color: #0a0ef0;
     color: white;
     border: none;
     border-radius: 4px;
@@ -70,7 +70,7 @@ button {
 
 /* Button Hover Effect */
 button:hover {
-    background-color: #45a049;
+    background-color:blue;
 }
 
 /* Error message styling (in case of failed registration) */

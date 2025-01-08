@@ -41,16 +41,23 @@ $conn->close();
         <h2>Find Your Perfect Secondhand Bike</h2>
         <p>Reliable bikes at affordable prices</p>
         <div class="bike-list">
-            <?php if ($result->num_rows > 0): ?>
+            <?php if ($result && $result->num_rows > 0): ?>
                 <!-- Loop through all the bikes -->
                 <?php while ($bike = $result->fetch_assoc()): ?>
                     <div class="bike-item">
                         <!-- Dynamically generate the path to the uploaded image -->
-                        <img src="http://localhost/sujal/bikebazaar/<?php echo htmlspecialchars($bike['image']); ?>" alt="Bike Image" width="200">
+                        <img src="http://localhost/sujal/bikebazaar/<?php echo htmlspecialchars($bike['image']); ?>" 
+                             alt="<?php echo htmlspecialchars($bike['bike_name']); ?>" 
+                             width="200" 
+                             height="150">
                         
                         <h3><?php echo htmlspecialchars($bike['bike_name']); ?></h3>
-                        <p>Price: $<?php echo number_format($bike['price'], 2); ?></p>
-                        <p>Description: <?php echo htmlspecialchars($bike['description']); ?></p>
+                        <p><strong>Price:</strong> $<?php echo number_format($bike['price'], 2); ?></p>
+                        <p><strong>Model:</strong> <?php echo htmlspecialchars($bike['model']); ?></p>
+                        <p><strong>Kilometer:</strong> <?php echo htmlspecialchars($bike['kilometer']); ?> KM</p>
+                        <p><strong>Owner:</strong> <?php echo htmlspecialchars($bike['owner']); ?></p>
+                        <p><strong>Description:</strong> <?php echo htmlspecialchars($bike['description']); ?></p>
+                        
                     </div>
                 <?php endwhile; ?>
             <?php else: ?>

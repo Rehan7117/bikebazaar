@@ -17,15 +17,15 @@ if (!isset($_SESSION['admin_id'])) {
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-color:rgb(244, 244, 244);
             margin: 0;
             padding: 0;
         }
         .dashboard-container {
-            max-width: 800px;
+            max-width: 1400px;
             margin: 50px auto;
             padding: 20px;
-            background-color: #fff;
+            background-color: blue;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
@@ -37,18 +37,18 @@ if (!isset($_SESSION['admin_id'])) {
         }
         .dashboard-header h1 {
             font-size: 24px;
-            color: #333;
+            color: white;
         }
         .dashboard-header a {
             text-decoration: none;
-            color: #fff;
-            background-color: #007bff;
+            color: ;
+            background-color:rgb(179, 255, 0);
             padding: 10px 15px;
             border-radius: 4px;
             transition: background-color 0.3s;
         }
         .dashboard-header a:hover {
-            background-color: #0056b3;
+            background-color:rgb(179, 42, 0);
         }
         .dashboard-content {
             font-size: 18px;
@@ -62,13 +62,13 @@ if (!isset($_SESSION['admin_id'])) {
             margin: 10px 0;
         }
         li a {
-            color: #007bff;
+            color:rgba(245, 249, 253, 0.96);
             text-decoration: none;
             font-size: 18px;
             transition: color 0.3s;
         }
         li a:hover {
-            color: #0056b3;
+            color:rgb(247, 243, 239);
         }
     </style>
 </head>
@@ -79,10 +79,10 @@ if (!isset($_SESSION['admin_id'])) {
             <a href="admin_logout.php">Logout</a> <!-- Uncommented logout link -->
         </div>
         <div class="dashboard-content">
-            <p>You are logged in as an admin.</p>
             <ul>
                 <li><a href="user_details.php">View Users</a></li>
                 <li><a href="uploadbike.php">Upload Bikes</a></li> <!-- Fixed the link extension to .php -->
+                <li><a href="bikebookings.php"> Bikes bookings</a></li> <!-- Fixed the link extension to .php -->
             </ul>
         </div>
     </div>

@@ -3,14 +3,14 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f9f9f9;
-    color: #333;
+    background-color: #1f1ce6; /* Light blue background */
+    color: #00274d; /* Deep navy text */
 }
 
 /* Hero Section */
 .hero {
     background: url('https://via.placeholder.com/1200x400') no-repeat center center/cover;
-    color: white;
+    color: #ffffff; /* White text */
     text-align: center;
     padding: 50px 20px;
 }
@@ -29,8 +29,9 @@ body {
 .featured-bikes {
     text-align: center;
     padding: 40px 20px;
-    background-color: #fff;
+    background-color: #0f22c7ea; /* White background */
     margin-top: 20px;
+    color: #00274d; /* Deep navy text */
 }
 
 .featured-bikes h2 {
@@ -54,9 +55,9 @@ body {
 .bike-item {
     width: 250px;
     padding: 20px;
-    border: 1px solid #ddd;
+    border: 1px solid #007bff; /* Blue border */
     border-radius: 5px;
-    background-color: #fefefe;
+    background-color: #fc1515f6; /* White background */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
@@ -70,7 +71,7 @@ body {
 
 .bike-item h3 {
     font-size: 1.2rem;
-    color: #333;
+    color: #00274d; /* Deep navy text */
     margin-bottom: 10px;
 }
 
@@ -82,13 +83,15 @@ body {
 .bike-item:hover {
     transform: scale(1.02);
     transition: all 0.3s ease;
+    border-color: #0056b3; /* Darker blue on hover */
 }
 
 /* Contact Section */
 .contact {
-    background-color: #f2f2f2;
+    background-color: #f0f8ff; /* Light blue background */
     padding: 40px 20px;
     text-align: center;
+    color: #00274d; /* Deep navy text */
 }
 
 .contact h2 {
@@ -102,18 +105,19 @@ body {
 }
 
 .contact a {
-    color: #007bff;
+    color: #007bff; /* Blue links */
     text-decoration: none;
 }
 
 .contact a:hover {
     text-decoration: underline;
+    color: #0056b3; /* Darker blue on hover */
 }
 
 /* Footer */
 footer {
-    background-color: #333;
-    color: #fff;
+    background-color: #00274d; /* Deep navy background */
+    color: #ffffff; /* White text */
     text-align: center;
     padding: 10px 0;
     font-size: 0.9rem;

@@ -10,10 +10,10 @@ if (session_status() === PHP_SESSION_NONE) {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        background-color: #333;
+        background-color: blue;
         color: white;
         padding: 10px 20px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 2px 5px rgba(15, 204, 141, 0.93);
         font-family: Arial, sans-serif;
     }
 
@@ -41,7 +41,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
     /* Hover effect for links */
     .navbar a:hover {
-        background-color: #575757;
+        background-color:rgb(201, 233, 17);
         color: #f0f0f0;
     }
 

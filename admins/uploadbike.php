@@ -19,6 +19,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['bike_image'])) {
     $bike_name = htmlspecialchars($conn->real_escape_string($_POST['bike_name']));
     $price = htmlspecialchars($conn->real_escape_string($_POST['price']));
     $description = htmlspecialchars($conn->real_escape_string($_POST['description']));
+    $model = htmlspecialchars($conn->real_escape_string($_POST['model']));
+    $kilometer = htmlspecialchars($conn->real_escape_string($_POST['kilometer']));
+    $owner = htmlspecialchars($conn->real_escape_string($_POST['owner']));
 
     // Handle the image upload
     $target_dir = "C:/xampp/htdocs/sujal/bikebazaar/images/";
@@ -50,8 +53,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['bike_image'])) {
                     $image_relative_path = 'images/' . $image_new_name;
 
                     // Insert bike details and image path into the database using prepared statements
-                    $stmt = $conn->prepare("INSERT INTO bikes (bike_name, price, description, image) VALUES (?, ?, ?, ?)");
-                    $stmt->bind_param("ssss", $bike_name, $price, $description, $image_relative_path);
+                    $stmt = $conn->prepare("INSERT INTO bikes (bike_name, price, description, image, model, kilometer, owner) VALUES (?, ?, ?, ?, ?, ?, ?)");
+                    $stmt->bind_param("sssssss", $bike_name, $price, $description, $image_relative_path, $model, $kilometer, $owner);
 
                     if ($stmt->execute()) {
                         $success_message = "Bike details and image uploaded successfully!";
@@ -132,43 +135,57 @@ if (isset($error_message)) {
     echo "<div style='color: red;'>" . $error_message . "</div>";
 }
 ?>
+
 <html>
-    <head>
-        <link rel="stylesheet" type="text/css" href="uploadbike.css"> <!-- Link to your external CSS file -->
-    </head>
-    <body>
-        <form method="POST" enctype="multipart/form-data">
-            <label for="bike_name">Bike Name:</label>
-            <input type="text" name="bike_name" required><br>
+<head>
+    <link rel="stylesheet" type="text/css" href="uploadbike.css"> <!-- Link to your external CSS file -->
+</head>
+<body>
+    <div class="r">
+    <form method="POST" enctype="multipart/form-data">
+        <label for="bike_name">Bike Name:</label>
+        <input type="text" name="bike_name" required><br>
 
-            <label for="price">Price:</label>
-            <input type="text" name="price" required><br>
+        <label for="price">Price</label>
+        <input type="text" name="price" required><br>
 
-            <label for="description">Description:</label>
-            <textarea name="description" required></textarea><br>
+        <label for="description">Description:</label>
+        <textarea name="description" required></textarea><br>
 
-            <label for="bike_image">Upload Bike Image:</label>
-            <input type="file" name="bike_image" required><br>
+        <label for="model">Model:</label>
+        <input type="text" name="model" required><br>
 
-            <input type="submit" value="Upload Bike">
-        </form>
+        <label for="kilometer">Kilometer:</label>
+        <input type="text" name="kilometer" required><br>
 
-        <!-- Display the list of bikes with images and delete option -->
-        <h2>Uploaded Bikes</h2>
-        <?php
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                echo "<div style='border: 1px solid #ddd; padding: 10px; margin-bottom: 10px;'>";
-                echo "<h3>" . htmlspecialchars($row['bike_name']) . "</h3>";
-                echo "<p>Price: " . htmlspecialchars($row['price']) . "</p>";
-                echo "<p>Description: " . htmlspecialchars($row['description']) . "</p>";
-                echo "<img src='/sujal/bikebazaar/" . htmlspecialchars($row['image']) . "' alt='" . htmlspecialchars($row['bike_name']) . "' style='max-width: 200px;'><br>";
-                echo "<a href='?delete_id=" . $row['id'] . "' style='color: red;'>Delete</a>";
-                echo "</div>";
-            }
-        } else {
-            echo "No bikes uploaded yet.";
+        <label for="owner">Owner:</label>
+        <input type="text" name="owner" required><br>
+
+        <label for="bike_image">Upload Bike Image:</label>
+        <input type="file" name="bike_image" required><br>
+
+        <input type="submit" value="Upload Bike">
+    </form>
+    </div>
+    <!-- Display the list of bikes with images and delete option -->
+    <h2>Uploaded Bikes</h2>
+    <?php
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            echo "<div style='border: 1px solid #ddd; padding: 10px; margin-bottom: 10px;'>";
+            echo "<h3>" . htmlspecialchars($row['bike_name']) . "</h3>";
+            echo "<p>Price: " . htmlspecialchars($row['price']) . "</p>";
+            echo "<p>Description: " . htmlspecialchars($row['description']) . "</p>";
+            echo "<p>Model: " . htmlspecialchars($row['model']) . "</p>";
+            echo "<p>Kilometer: " . htmlspecialchars($row['kilometer']) . "</p>";
+            echo "<p>Owner: " . htmlspecialchars($row['owner']) . "</p>";
+            echo "<img src='/sujal/bikebazaar/" . htmlspecialchars($row['image']) . "' alt='" . htmlspecialchars($row['bike_name']) . "' style='max-width: 200px;'><br>";
+            echo "<a href='?delete_id=" . $row['id'] . "' style='color: red;'>Delete</a>";
+            echo "</div>";
         }
-        ?>
-    </body>
+    } else {
+        echo "No bikes uploaded yet.";
+    }
+    ?>
+</body>
 </html>

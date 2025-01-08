@@ -1,23 +1,33 @@
-
 body {
     font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
     background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+.dashboard-container, .form-container {
+    max-width: 1400px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 h2 {
     text-align: center;
     margin-top: 20px;
+    color: #333;
 }
 
 form {
+    width: 100%;
     max-width: 600px;
     margin: 30px auto;
     padding: 20px;
     background-color: #fff;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(226, 4, 4, 0.836);
 }
 
 label {
@@ -64,6 +74,44 @@ button:hover {
 .message.error {
     background-color: #f8d7da;
     color: #721c24;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th, table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+table th {
+    background-color: #007bff;
+    color: #fff;
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table tr:nth-child(odd) {
+    background-color: #f4f4f4;
+}
+
+.logout-btn {
+    text-decoration: none;
+    color: #fff;
+    background-color: #007bff;
+    padding: 10px 15px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.logout-btn:hover {
+    background-color: #0056b3;
 }
 
 footer {
