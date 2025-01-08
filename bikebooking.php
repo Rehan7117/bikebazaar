@@ -20,7 +20,7 @@ if ($conn->connect_error) {
 $user_details = [];
 if (isset($_SESSION['user_id'])) {
     $user_id = $_SESSION['user_id'];
-    $sql = "SELECT username, email FROM users WHERE id = '$user_id'";
+    $sql = "SELECT username, email, phone FROM users WHERE id = '$user_id'"; // Fetching phone number as well
     $result = $conn->query($sql);
     
     if ($result->num_rows > 0) {
@@ -34,10 +34,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $bike_number = $conn->real_escape_string($_POST['bike_number']);
     $username = $user_details['username'];
     $email = $user_details['email'];
+    $phone = $conn->real_escape_string($_POST['phone']);  // Capturing the additional phone number
 
     // Insert booking details into the database
-    $sql = "INSERT INTO bike_bookings (user_id, bike_name, bike_number, username, email) 
-            VALUES ('$user_id', '$bike_name', '$bike_number', '$username', '$email')";
+    $sql = "INSERT INTO bike_bookings (user_id, bike_name, bike_number, username, email, phone) 
+            VALUES ('$user_id', '$bike_name', '$bike_number', '$username', '$email', '$phone')";
     
     if ($conn->query($sql) === TRUE) {
         $success_message = "Bike booking successful!";
@@ -137,10 +138,12 @@ $conn->close();
             <label for="email">Email</label>
             <input type="email" name="email" id="email" value="<?php echo htmlspecialchars($user_details['email']); ?>" readonly>
 
-            <label for="bike_name">Enter Bike Name</label>
-            <input type="text" name="bike_name" id="bikename" placeholder="Enter Bike Name" required>
+            <label for="phone">Phone Number</label>
+            <input type="text" name="phone" id="phone" value="<?php echo htmlspecialchars($user_details['phone']); ?>" required>
 
-            
+            <label for="bike_name">Enter Bike Name</label>
+            <input type="text" name="bike_name" id="bike_name" placeholder="Enter Bike Name" required>
+
             <label for="bike_number">Bike Number</label>
             <input type="text" name="bike_number" id="bike_number" placeholder="Enter Bike Number" required>
             

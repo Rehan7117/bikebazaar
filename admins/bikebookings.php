@@ -15,7 +15,7 @@ if ($conn->connect_error) {
 }
 
 // Fetch all bike bookings
-$sql = "SELECT * FROM bike_bookings";
+$sql = "SELECT id, user_id, username, email, bike_name, bike_number, phone FROM bike_bookings";
 $result = $conn->query($sql);
 
 $conn->close();
@@ -51,6 +51,7 @@ $conn->close();
                         <th>Email</th>
                         <th>Bike Name</th>
                         <th>Bike Number</th>
+                        <th>Phone</th> <!-- Add this column header for Phone -->
                     </tr>
                 </thead>
                 <tbody>
@@ -62,6 +63,7 @@ $conn->close();
                             <td><?php echo htmlspecialchars($row['email']); ?></td>
                             <td><?php echo htmlspecialchars($row['bike_name']); ?></td>
                             <td><?php echo htmlspecialchars($row['bike_number']); ?></td>
+                            <td><?php echo htmlspecialchars($row['phone']); ?></td> <!-- Display the phone number -->
                         </tr>
                     <?php endwhile; ?>
                 </tbody>
