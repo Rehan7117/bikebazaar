@@ -85,5 +85,5 @@ if (session_status() === PHP_SESSION_NONE) {
             <!-- If the user is not logged in, show login link -->
             <a href="login.php">Login</a>
         <?php endif; ?>
-    </div>
+    </div>
 </div>

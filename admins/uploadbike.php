@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['bike_image'])) {
     $owner = htmlspecialchars($conn->real_escape_string($_POST['owner']));
 
     // Handle the image upload
-    $target_dir = "C:/xampp/htdocs/sujal/bikebazaar/images/";
+    $target_dir = "C:/xampp/htdocs/shivam/bikebazaar/images/";
     $image_name = $_FILES['bike_image']['name'];
     $image_tmp_name = $_FILES['bike_image']['tmp_name'];
     $image_size = $_FILES['bike_image']['size'];
@@ -91,7 +91,7 @@ if (isset($_GET['delete_id'])) {
 
     if ($result->num_rows > 0) {
         $bike = $result->fetch_assoc();
-        $image_path = 'C:/xampp/htdocs/sujal/bikebazaar/' . $bike['image'];
+        $image_path = 'C:/xampp/htdocs/shivam/bikebazaar/' . $bike['image'];
 
         // Delete the bike from the database
         $delete_sql = "DELETE FROM bikes WHERE id = ?";
@@ -179,7 +179,7 @@ if (isset($error_message)) {
             echo "<p>Model: " . htmlspecialchars($row['model']) . "</p>";
             echo "<p>Kilometer: " . htmlspecialchars($row['kilometer']) . "</p>";
             echo "<p>Owner: " . htmlspecialchars($row['owner']) . "</p>";
-            echo "<img src='/sujal/bikebazaar/" . htmlspecialchars($row['image']) . "' alt='" . htmlspecialchars($row['bike_name']) . "' style='max-width: 200px;'><br>";
+            echo "<img src='/shivam/bikebazaar/" . htmlspecialchars($row['image']) . "' alt='" . htmlspecialchars($row['bike_name']) . "' style='max-width: 200px;'><br>";
             echo "<a href='?delete_id=" . $row['id'] . "' style='color: red;'>Delete</a>";
             echo "</div>";
         }

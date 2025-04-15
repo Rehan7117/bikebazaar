@@ -2,24 +2,25 @@
 // Include navbar, which already starts the session
 include 'navbar.php';
 
-// Check if user is logged in
+// Check if the user is logged in
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit();
 }
 
-// Initialize the database connection
-$conn = new mysqli('localhost', 'root', '', 'project1');
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+// Fetch bike details from the URL parameters
+$bike_name = isset($_GET['bike_name']) ? $_GET['bike_name'] : '';
+$price = isset($_GET['price']) ? $_GET['price'] : '';
+$model = isset($_GET['model']) ? $_GET['model'] : '';
+$kilometer = isset($_GET['kilometer']) ? $_GET['kilometer'] : '';
+$owner = isset($_GET['owner']) ? $_GET['owner'] : '';
+$description = isset($_GET['description']) ? $_GET['description'] : '';
 
 // Fetch user details
 $user_details = [];
 if (isset($_SESSION['user_id'])) {
     $user_id = $_SESSION['user_id'];
+    $conn = new mysqli('localhost', 'root', '', 'project1');
     $sql = "SELECT username, email, phone FROM users WHERE id = '$user_id'"; // Fetching phone number as well
     $result = $conn->query($sql);
     
@@ -30,25 +31,32 @@ if (isset($_SESSION['user_id'])) {
 
 // Handle form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Ensure that all POST data is safe for the database
     $bike_name = $conn->real_escape_string($_POST['bike_name']);
-    $bike_number = $conn->real_escape_string($_POST['bike_number']);
     $username = $user_details['username'];
     $email = $user_details['email'];
-    $phone = $conn->real_escape_string($_POST['phone']);  // Capturing the additional phone number
+    $phone = $conn->real_escape_string($_POST['phone']);
+    $price = $conn->real_escape_string($_POST['price']);
+    $model = $conn->real_escape_string($_POST['model']);
+    $kilometer = $conn->real_escape_string($_POST['kilometer']);
+    $owner = $conn->real_escape_string($_POST['owner']);
+    $description = $conn->real_escape_string($_POST['description']);
 
     // Insert booking details into the database
-    $sql = "INSERT INTO bike_bookings (user_id, bike_name, bike_number, username, email, phone) 
-            VALUES ('$user_id', '$bike_name', '$bike_number', '$username', '$email', '$phone')";
+    $sql = "INSERT INTO bike_bookings 
+            (user_id, bike_name, username, email, phone, price, model, kilometer, owner, description) 
+            VALUES 
+            ('$user_id', '$bike_name', '$username', '$email', '$phone', '$price', '$model', '$kilometer', '$owner', '$description')";
     
     if ($conn->query($sql) === TRUE) {
         $success_message = "Bike booking successful!";
     } else {
         $error_message = "Error: " . $conn->error;
     }
-}
 
-// Close the connection
-$conn->close();
+    // Close the database connection
+    $conn->close();
+}
 ?>
 
 <!DOCTYPE html>
@@ -57,7 +65,22 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bike Booking</title>
-    <style>
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
@@ -122,7 +145,7 @@ $conn->close();
         <h2>Book a Bike</h2>
 
         <!-- Show logged-in user's name and email -->
-        <p>Welcome, <?php echo htmlspecialchars($user_details['username']); ?> (<?php echo htmlspecialchars($user_details['email']); ?>)</p>
+        <!-- <p>Welcome, <?php echo htmlspecialchars($user_details['username']); ?> (<?php echo htmlspecialchars($user_details['email']); ?>)</p> -->
 
         <?php if (isset($success_message)): ?>
             <div class="message success"><?php echo $success_message; ?></div>
@@ -141,12 +164,24 @@ $conn->close();
             <label for="phone">Phone Number</label>
             <input type="text" name="phone" id="phone" value="<?php echo htmlspecialchars($user_details['phone']); ?>" required>
 
-            <label for="bike_name">Enter Bike Name</label>
-            <input type="text" name="bike_name" id="bike_name" placeholder="Enter Bike Name" required>
+            <label for="bike_name">Bike Name</label>
+            <input type="text" name="bike_name" id="bike_name" value="<?php echo htmlspecialchars($bike_name); ?>" readonly>
 
-            <label for="bike_number">Bike Number</label>
-            <input type="text" name="bike_number" id="bike_number" placeholder="Enter Bike Number" required>
-            
+            <label for="price">Price</label>
+            <input type="text" name="price" id="price" value="<?php echo number_format($price, 2); ?>" readonly>
+
+            <label for="model">Model</label>
+            <input type="text" name="model" id="model" value="<?php echo htmlspecialchars($model); ?>" readonly>
+
+            <label for="kilometer">Kilometer</label>
+            <input type="text" name="kilometer" id="kilometer" value="<?php echo htmlspecialchars($kilometer); ?>" readonly>
+
+            <label for="owner">Owner</label>
+            <input type="text" name="owner" id="owner" value="<?php echo htmlspecialchars($owner); ?>" readonly>
+
+            <label for="description">Description</label>
+            <textarea name="description" id="description" readonly><?php echo htmlspecialchars($description); ?></textarea>
+
             <button type="submit">Book Now</button>
         </form>
     </div>
